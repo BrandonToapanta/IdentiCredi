@@ -1,5 +1,4 @@
 'use client';
-import { MiniKit } from '@worldcoin/minikit-js';
 import { MiniKitProvider } from '@worldcoin/minikit-js/minikit-provider';
 import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
@@ -39,8 +38,8 @@ export default function ClientProviders({
     <ErudaProvider>
       <MiniKitProvider>
 
-        {/* <SessionProvider session={session}>{children}</SessionProvider> */}
-        <h1>hello</h1>
+        <SessionProvider session={session}>{children}</SessionProvider>
+
 
       </MiniKitProvider>
     </ErudaProvider>

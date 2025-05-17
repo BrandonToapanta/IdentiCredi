@@ -1,6 +1,8 @@
 import { auth } from '@/auth';
 import { Page } from '@/components/PageLayout';
 import { Pay } from '@/components/Pay';
+import SemiCircleProgressBar from '@/components/ProgressSemiCircle';
+import PendingBalances from '@/components/TableDeudasPrestador';
 import { Transaction } from '@/components/Transaction';
 import { UserInfo } from '@/components/UserInfo';
 import { Verify } from '@/components/Verify';
@@ -12,12 +14,12 @@ export default async function Home() {
 
   return (
     <>
-      <Page.Header className="p-0">
+      <Page.Header className="p-0 text-black">
         <TopBar
-          title="Home"
+          title="IdentiCredi"
           endAdornment={
             <div className="flex items-center gap-2">
-              <p className="text-sm font-semibold capitalize">
+              <p className="text-sm font-semibold capitalize ">
                 {session?.user.username}
               </p>
               <Marble src={session?.user.profilePictureUrl} className="w-12" />
@@ -25,7 +27,19 @@ export default async function Home() {
           }
         />
       </Page.Header>
-      <Page.Main className="flex flex-col items-center justify-start gap-4 mb-16">
+
+
+      <Page.Main className="flex flex-col items-center justify-start gap-4 mb-16 bg-white text-black">
+
+        <SemiCircleProgressBar
+          value={700} // Ejemplo: 700 (amarillo)
+          size={200}
+          strokeWidth={12}
+          secondaryColor="#D1D5DB" // Gris
+        />
+
+        <PendingBalances />
+
         <UserInfo />
         <Verify />
         <Pay />
