@@ -4,6 +4,7 @@ import '@worldcoin/mini-apps-ui-kit-react/styles.css';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import { Navigation } from '@/components/Navigation'; // 👈 IMPORTANTE
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -26,10 +27,16 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await auth();
+
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} `}>
-        <ClientProviders session={session}>{children}</ClientProviders>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <ClientProviders session={session}>
+          <div style={{ paddingBottom: '70px' }}>
+            {children}
+          </div>
+          <Navigation /> {/* 👈 Se añade aquí para estar siempre visible */}
+        </ClientProviders>
       </body>
     </html>
   );
